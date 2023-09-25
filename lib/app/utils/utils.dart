@@ -9,6 +9,14 @@ class Utils {
   static String emailImage = "assets/images/ic_email.png";
   static String passwordImage = "assets/images/ic_password.png";
 
+  // Icons
+  static const IconData personImage = Icons.person_outlined;
+  static const IconData bikeWashImage = Icons.directions_bike_outlined;
+  static const IconData carWashImage = Icons.directions_car_filled_outlined;
+  static const IconData groceryDeliveryImage =
+      Icons.local_grocery_store_outlined;
+  static const IconData houseKeepingImage = Icons.home_outlined;
+
   // Texts
   static String loadingText = "Loading...";
   static String loginText = "Log In";
@@ -29,6 +37,29 @@ class Utils {
   static String enterPasswordLabel = "Password";
   static String enterCurrentPassword = "Enter Current Password";
   static String passwordLength = "Password must be at list 8 characters";
+
+  // Dashboard Texts
+  static String selectPlanText = "Select Plan";
+  static String ourServicesText = "Our Services";
+  static String basicText = "Basic";
+  static String premiumText = "Premium";
+  static String advancedText = "Advanced";
+  static String whoWeAreText = "Who We Are";
+  static String whoWeAreDesc =
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using lorem lpsum is that it has a more-or less norm. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using lorem lpsum is that it has a more-or less norm.";
+
+  // Sign Up Texts
+  static String signInText = "Sign In";
+  static String signInDesc = "Let's Create Account Together";
+  static String alreadyHaveAnAccountText = "Already Have An Account ?";
+  static String enterName = "Please enter your name";
+  static String enterNameHint = "Enter Your Name";
+  static String enterNameLabel = "Name";
+
+  // Forget Password Text
+  static String forgetPasswordTitle = "Forget Password";
+  static String sendText = "Send";
+  static String backToText = "Back To?";
 
   static final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
     onPrimary: Colors.black87,

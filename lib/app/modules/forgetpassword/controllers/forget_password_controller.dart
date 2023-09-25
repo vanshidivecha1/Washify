@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:vehicle_washing_flutter/app/routes/app_pages.dart';
-import 'package:vehicle_washing_flutter/app/utils/color_themes.dart';
 
 import '../../../utils/utils.dart';
 
-class LoginController extends GetxController {
+class ForgetPasswordController extends GetxController {
   //var email = ''.obs;
   //var password = ''.obs;
 
@@ -14,8 +13,12 @@ class LoginController extends GetxController {
 
   bool get isPasswordVisible => _isPasswordVisible.value;
 
-  final GlobalKey<FormState> loginInFormKey = GlobalKey<FormState>();
-  late TextEditingController emailController, passwordController;
+  final GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
+  late TextEditingController nameController,
+      emailController,
+      passwordController;
+
+  var name = '';
   var email = '';
   var password = '';
 
@@ -30,6 +33,7 @@ class LoginController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    nameController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
   }
@@ -42,8 +46,16 @@ class LoginController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    //emailController.dispose();
-    //passwordController.dispose();
+    // nameController.dispose();
+    // emailController.dispose();
+    // passwordController.dispose();
+  }
+
+  String? validateName(String value) {
+    if (value.isEmpty) {
+      return Utils.enterName;
+    }
+    return null;
   }
 
   String? validateEmail(String value) {
@@ -62,7 +74,7 @@ class LoginController extends GetxController {
 
   void checkLogin() {
     setLoading(false);
-    final isValid = loginInFormKey.currentState!.validate();
+    final isValid = signUpFormKey.currentState!.validate();
     Get.offAllNamed(AppPages.HOME);
     /*checkUser(emailController.text, passwordController.text).then((auth) {
       if (auth) {
@@ -80,7 +92,7 @@ class LoginController extends GetxController {
     if (!isValid) {
       return;
     }
-    loginInFormKey.currentState!.save();
+    signUpFormKey.currentState!.save();
   }
 
   Future<bool> checkUser(String user, String password) {

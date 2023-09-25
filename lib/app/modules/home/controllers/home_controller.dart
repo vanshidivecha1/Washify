@@ -1,9 +1,21 @@
 import 'package:get/get.dart';
+import 'package:vehicle_washing_flutter/app/utils/utils.dart';
+
+import '../model/our_services_model.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  final items = <OurServicesModel>[
+    OurServicesModel(imagePath: Utils.bikeWashImage, text: 'Bike Wash'),
+    OurServicesModel(imagePath: Utils.carWashImage, text: 'Car Wash'),
+    OurServicesModel(
+        imagePath: Utils.groceryDeliveryImage, text: 'Grocery Delivery'),
+    OurServicesModel(imagePath: Utils.houseKeepingImage, text: 'House Keeping'),
+  ].obs;
 
-  final count = 0.obs;
+  void addItem(OurServicesModel item) {
+    items.add(item);
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +30,4 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

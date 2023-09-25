@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vehicle_washing_flutter/app/routes/app_pages.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../utils/color_themes.dart';
 import '../../../utils/text_themes.dart';
 import '../../../utils/utils.dart';
-import '../controllers/login_controller.dart';
+import '../controllers/signup_controller.dart';
 
-final LoginController controller = Get.put(LoginController());
+final SignUpController controller = Get.put(SignUpController());
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+class SignUpView extends GetView<SignUpController> {
+  const SignUpView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
-
-    late bool isLoading = false;
 
     return Scaffold(
       body: Stack(
@@ -33,7 +31,7 @@ class LoginView extends GetView<LoginController> {
           Positioned(
             left: 0,
             right: 0,
-            top: 150,
+            top: 100,
             child: Align(
               alignment: Alignment.topCenter,
               child: Center(
@@ -53,7 +51,7 @@ class LoginView extends GetView<LoginController> {
               child: Center(
                 child: Container(
                   width: width,
-                  height: height / 2.0,
+                  height: height / 1.5,
                   decoration: const BoxDecoration(
                     color: ThemeColor.white,
                     borderRadius: BorderRadius.only(
@@ -62,7 +60,7 @@ class LoginView extends GetView<LoginController> {
                     ),
                   ),
                   child: Form(
-                    key: controller.loginInFormKey,
+                    key: controller.signUpFormKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -70,7 +68,7 @@ class LoginView extends GetView<LoginController> {
                           padding:
                               const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
                           child: Text(
-                            Utils.loginText,
+                            Utils.signInText,
                             textAlign: TextAlign.start,
                             style: mandisaRegular(
                                 color: ThemeColor.black,
@@ -82,7 +80,7 @@ class LoginView extends GetView<LoginController> {
                           padding:
                               const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 30.0),
                           child: Text(
-                            Utils.welcomeMsgText,
+                            Utils.signInDesc,
                             textAlign: TextAlign.start,
                             style: mandisaRegular(
                                 color: ThemeColor.primaryGrey,
@@ -90,38 +88,67 @@ class LoginView extends GetView<LoginController> {
                                 fontSize: 14.0),
                           ),
                         ),
+                        // Name Field
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+                          child: TextFormField(
+                            textInputAction: TextInputAction.next,
+                            controller: controller.nameController,
+                            onSaved: (value) {
+                              controller.name = value!;
+                            },
+                            validator: (value) =>
+                                controller.validateName(value!),
+                            decoration: InputDecoration(
+                              prefixIcon: const Icon(Utils.personImage),
+                              hintText: Utils.enterNameHint,
+                              labelText: Utils.enterNameLabel,
+                              errorStyle: mandisaRegular(
+                                  color: ThemeColor.secondaryRed,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 14.0),
+                              border: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.red),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(9.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                         // Email Field
                         Padding(
-                            padding:
-                                const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-                            child: TextFormField(
-                                textInputAction: TextInputAction.next,
-                                controller: controller.emailController,
-                                onSaved: (value) {
-                                  controller.email = value!;
-                                },
-                                validator: (value) =>
-                                    controller.validateEmail(value!),
-                                //onChanged: controller.validateEmail,
-                                /* validator: MultiValidator([
+                          padding:
+                              const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
+                          child: TextFormField(
+                            textInputAction: TextInputAction.next,
+                            controller: controller.emailController,
+                            onSaved: (value) {
+                              controller.email = value!;
+                            },
+                            validator: (value) =>
+                                controller.validateEmail(value!),
+                            //onChanged: controller.validateEmail,
+                            /* validator: MultiValidator([
                                   RequiredValidator(
                                       errorText: controller.emailError.value),
                                   EmailValidator(
                                       errorText: controller.emailError.value),
                                 ]),*/
-                                decoration: InputDecoration(
-                                    prefixIcon: Image.asset(Utils.emailImage),
-                                    hintText: Utils.enterEmailHint,
-                                    labelText: Utils.enterEmailLabel,
-                                    errorStyle: mandisaRegular(
-                                        color: ThemeColor.secondaryRed,
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 14.0),
-                                    border: const OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.red),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(9.0)))))),
+                            decoration: InputDecoration(
+                                prefixIcon: Image.asset(Utils.emailImage),
+                                hintText: Utils.enterEmailHint,
+                                labelText: Utils.enterEmailLabel,
+                                errorStyle: mandisaRegular(
+                                    color: ThemeColor.secondaryRed,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 14.0),
+                                border: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.red),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(9.0)))),
+                          ),
+                        ),
                         // Password Field
                         Obx(
                           () {
@@ -170,26 +197,12 @@ class LoginView extends GetView<LoginController> {
                             );
                           },
                         ),
-                        // Forget password
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: GestureDetector(
-                            onTap: () => {
-                              Get.offNamed(AppPages.FORGET_PASSWORD),
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.fromLTRB(
-                                  0.0, 0.0, 10.0, 0.0),
-                              child: Text(Utils.forgetPasswordText),
-                            ),
-                          ),
-                        ),
                         // Login Button
                         Obx(
                           () {
                             return Padding(
                               padding: const EdgeInsets.fromLTRB(
-                                  28.0, 20.0, 28.0, 5.0),
+                                  30.0, 40.0, 30.0, 5.0),
                               child: SizedBox(
                                 width: MediaQuery.of(context).size.width,
                                 height: 40,
@@ -234,7 +247,7 @@ class LoginView extends GetView<LoginController> {
                                           ],
                                         )
                                       : Text(
-                                          Utils.loginText,
+                                          Utils.signUpText,
                                           style: mandisaRegular(
                                               color: ThemeColor.white,
                                               fontWeight: FontWeight.w500,
@@ -255,17 +268,17 @@ class LoginView extends GetView<LoginController> {
                               Container(
                                 margin: const EdgeInsets.fromLTRB(
                                     0.0, 0.0, 10.0, 0.0),
-                                child: Text(Utils.dontHaveAnAccountText),
+                                child: Text(Utils.alreadyHaveAnAccountText),
                               ),
                               GestureDetector(
                                 onTap: () => {
-                                  Get.offNamed(AppPages.SIGNUP),
+                                  Get.toNamed(AppPages.LOGIN),
                                 },
                                 child: Container(
                                   margin: const EdgeInsets.fromLTRB(
                                       0.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    Utils.signUpText,
+                                    Utils.loginText,
                                     style: mandisaRegular(
                                       color: ThemeColor.mainColor,
                                       fontWeight: FontWeight.bold,
