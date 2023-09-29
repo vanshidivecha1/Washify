@@ -4,7 +4,7 @@ import 'package:vehicle_washing_flutter/app/routes/app_pages.dart';
 
 import '../../../utils/utils.dart';
 
-class ForgetPasswordController extends GetxController {
+class VerificationController extends GetxController {
   //var email = ''.obs;
   //var password = ''.obs;
 
@@ -13,9 +13,10 @@ class ForgetPasswordController extends GetxController {
 
   bool get isPasswordVisible => _isPasswordVisible.value;
 
-  final GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
-  late TextEditingController emailController, passwordController;
+  final GlobalKey<FormState> verificationFormKey = GlobalKey<FormState>();
+  late TextEditingController codeController;
 
+  var name = '';
   var email = '';
   var password = '';
 
@@ -30,8 +31,7 @@ class ForgetPasswordController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    codeController = TextEditingController();
   }
 
   @override
@@ -47,24 +47,19 @@ class ForgetPasswordController extends GetxController {
     // passwordController.dispose();
   }
 
-  String? validateEmail(String value) {
-    if (!GetUtils.isEmail(value)) {
-      return Utils.enterValidEmail;
-    }
-    return null;
-  }
-
-  String? validatePassword(String value) {
-    if (value.length < 8) {
-      return Utils.passwordLength;
+  String? validateVerificationCode(String value) {
+    if (value.isEmpty) {
+      return Utils.enterVerificationCodeText;
+    } else if (value.length < 6) {
+      return Utils.enterValidVerificationCodeText;
     }
     return null;
   }
 
   void checkLogin() {
     setLoading(false);
-    final isValid = forgetPasswordFormKey.currentState!.validate();
-    Get.toNamed(AppPages.VERIFICATION);
+    final isValid = verificationFormKey.currentState!.validate();
+    Get.toNamed(AppPages.NEW_PASSWORD);
     /*checkUser(emailController.text, passwordController.text).then((auth) {
       if (auth) {
         Get.snackbar('Login', 'Login successfully',
@@ -81,11 +76,7 @@ class ForgetPasswordController extends GetxController {
     if (!isValid) {
       return;
     }
-    forgetPasswordFormKey.currentState!.save();
-  }
-
-  void goBackToLoginScreen() {
-    Get.back();
+    verificationFormKey.currentState!.save();
   }
 
   Future<bool> checkUser(String user, String password) {

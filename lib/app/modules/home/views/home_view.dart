@@ -40,32 +40,38 @@ class HomeView extends GetView<HomeController> {
                     height: 280.0,
                   ),
                 ),
-                Positioned(
-                  top: 60,
-                  right: 20,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: ThemeColor.black.withOpacity(0.2),
-                          // Shadow color
-                          spreadRadius: 4,
-                          blurRadius: 2,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
-                    ),
+                GestureDetector(
+                  onTap: () {
+                    controller.openSideNavigator();
+                  },
+                  child: Positioned(
+                    top: 60,
+                    right: 20,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: ThemeColor.primaryYellow,
                         shape: BoxShape.circle,
-                        border: Border.all(color: ThemeColor.white, width: 2.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: ThemeColor.black.withOpacity(0.2),
+                            // Shadow color
+                            spreadRadius: 4,
+                            blurRadius: 2,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
                       ),
-                      child: ClipOval(
-                        child: SizedBox.fromSize(
-                          size: const Size.fromRadius(20), // Image radius
-                          child: const Icon(Icons.person),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: ThemeColor.primaryYellow,
+                          shape: BoxShape.circle,
+                          border:
+                              Border.all(color: ThemeColor.white, width: 2.0),
+                        ),
+                        child: ClipOval(
+                          child: SizedBox.fromSize(
+                            size: const Size.fromRadius(20), // Image radius
+                            child: const Icon(Icons.person),
+                          ),
                         ),
                       ),
                     ),
@@ -393,7 +399,7 @@ class HomeView extends GetView<HomeController> {
               margin: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
               child: Text(
                 Utils.whoWeAreDesc,
-                maxLines: 5,
+                maxLines: 10,
                 overflow: TextOverflow.ellipsis,
                 style: mandisaRegular(
                     color: ThemeColor.primaryShadowGrey,

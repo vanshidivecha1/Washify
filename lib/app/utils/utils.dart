@@ -61,6 +61,22 @@ class Utils {
   static String sendText = "Send";
   static String backToText = "Back To?";
 
+  // Verification Text
+  static String verificationText = "Verification";
+  static String verificationDesc =
+      "We will send OTP on your registered email address";
+  static String enterVerificationCodeText = "Enter Verification Code";
+  static String enterValidVerificationCodeText = "Enter Valid Verification Code";
+  static String didNotReceivedCodeText = "If You Didn't Receive Code!";
+  static String resendText = "Resend";
+  static String verifyText = "Verify";
+
+  // New Password Text
+  static String newPasswordText = "New Password";
+  static String saveText = "Save";
+  static String confirmPasswordIsNotSameText =
+      "Confirm Password Is Same As Password";
+
   static final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
     onPrimary: Colors.black87,
     backgroundColor: ThemeColor.mainColor,

@@ -5,23 +5,21 @@ import 'package:vehicle_washing_flutter/app/routes/app_pages.dart';
 import '../../../utils/color_themes.dart';
 import '../../../utils/text_themes.dart';
 import '../../../utils/utils.dart';
-import '../controllers/login_controller.dart';
+import '../controllers/newpassword_controller.dart';
 
-final LoginController controller = Get.put(LoginController());
+final NewPasswordController controller = Get.put(NewPasswordController());
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+class NewPasswordView extends GetView<NewPasswordController> {
+  const NewPasswordView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
 
-    late bool isLoading = false;
-
     return WillPopScope(
       onWillPop: () async {
-        Get.back();
+        Get.offNamed(AppPages.VERIFICATION);
         return true;
       },
       child: Scaffold(
@@ -38,7 +36,7 @@ class LoginView extends GetView<LoginController> {
             Positioned(
               left: 0,
               right: 0,
-              top: 150,
+              top: 100,
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Center(
@@ -58,7 +56,7 @@ class LoginView extends GetView<LoginController> {
                 child: Center(
                   child: Container(
                     width: width,
-                    height: height / 2.0,
+                    height: height / 2.2,
                     decoration: const BoxDecoration(
                       color: ThemeColor.white,
                       borderRadius: BorderRadius.only(
@@ -67,15 +65,15 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
                     child: Form(
-                      key: controller.loginInFormKey,
+                      key: controller.newPasswordFormKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+                                const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
                             child: Text(
-                              Utils.loginText,
+                              Utils.newPasswordText,
                               textAlign: TextAlign.start,
                               style: mandisaRegular(
                                   color: ThemeColor.black,
@@ -83,50 +81,6 @@ class LoginView extends GetView<LoginController> {
                                   fontSize: 26.0),
                             ),
                           ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 30.0),
-                            child: Text(
-                              Utils.welcomeMsgText,
-                              textAlign: TextAlign.start,
-                              style: mandisaRegular(
-                                  color: ThemeColor.primaryGrey,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14.0),
-                            ),
-                          ),
-                          // Email Field
-                          Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-                              child: TextFormField(
-                                  textInputAction: TextInputAction.next,
-                                  controller: controller.emailController,
-                                  onSaved: (value) {
-                                    controller.email = value!;
-                                  },
-                                  validator: (value) =>
-                                      controller.validateEmail(value!),
-                                  //onChanged: controller.validateEmail,
-                                  /* validator: MultiValidator([
-                                    RequiredValidator(
-                                        errorText: controller.emailError.value),
-                                    EmailValidator(
-                                        errorText: controller.emailError.value),
-                                  ]),*/
-                                  decoration: InputDecoration(
-                                      prefixIcon: Image.asset(Utils.emailImage),
-                                      hintText: Utils.enterEmailHint,
-                                      labelText: Utils.enterEmailLabel,
-                                      errorStyle: mandisaRegular(
-                                          color: ThemeColor.secondaryRed,
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 14.0),
-                                      border: const OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: Colors.red),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(9.0)))))),
                           // Password Field
                           Obx(
                             () {
@@ -143,11 +97,11 @@ class LoginView extends GetView<LoginController> {
                                   obscureText: !controller.isPasswordVisible,
                                   //onChanged: controller.validatePassword,
                                   /*validator: MultiValidator([
-                                  RequiredValidator(
-                                      errorText: controller.passwordError.value),
-                                  MinLengthValidator(8,
-                                      errorText: controller.passwordError.value),
-                                ]),*/
+                                RequiredValidator(
+                                    errorText: controller.passwordError.value),
+                                MinLengthValidator(8,
+                                    errorText: controller.passwordError.value),
+                              ]),*/
                                   decoration: InputDecoration(
                                     prefixIcon:
                                         Image.asset(Utils.passwordImage),
@@ -177,26 +131,65 @@ class LoginView extends GetView<LoginController> {
                               );
                             },
                           ),
-                          // Forget password
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: GestureDetector(
-                              onTap: () => {
-                                controller.goToForgetPassword(),
-                              },
-                              child: Container(
-                                margin: const EdgeInsets.fromLTRB(
-                                    0.0, 0.0, 10.0, 0.0),
-                                child: Text(Utils.forgetPasswordText),
-                              ),
-                            ),
+                          // Confirm Password Field
+                          Obx(
+                            () {
+                              return Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: TextFormField(
+                                  textInputAction: TextInputAction.next,
+                                  controller:
+                                      controller.confirmPasswordController,
+                                  onSaved: (value) {
+                                    controller.confirmPassword = value!;
+                                  },
+                                  validator: (value) =>
+                                      controller.validatePassword(value!),
+                                  obscureText:
+                                      !controller.isConfirmPasswordVisible,
+                                  //onChanged: controller.validatePassword,
+                                  /*validator: MultiValidator([
+                                RequiredValidator(
+                                    errorText: controller.passwordError.value),
+                                MinLengthValidator(8,
+                                    errorText: controller.passwordError.value),
+                              ]),*/
+                                  decoration: InputDecoration(
+                                    prefixIcon:
+                                        Image.asset(Utils.passwordImage),
+                                    hintText: Utils.enterPasswordHint,
+                                    labelText: Utils.enterPasswordLabel,
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                        controller.isConfirmPasswordVisible
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                      ),
+                                      onPressed: () {
+                                        controller
+                                            .toggleConfirmPasswordVisibility();
+                                      },
+                                    ),
+                                    errorStyle: mandisaRegular(
+                                        color: ThemeColor.secondaryRed,
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 14.0),
+                                    border: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.red),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(9.0))),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                           // Login Button
                           Obx(
                             () {
                               return Padding(
                                 padding: const EdgeInsets.fromLTRB(
-                                    28.0, 20.0, 28.0, 5.0),
+                                    30.0, 30.0, 30.0, 5.0),
                                 child: SizedBox(
                                   width: MediaQuery.of(context).size.width,
                                   height: 40,
@@ -243,7 +236,7 @@ class LoginView extends GetView<LoginController> {
                                             ],
                                           )
                                         : Text(
-                                            Utils.loginText,
+                                            Utils.saveText,
                                             style: mandisaRegular(
                                                 color: ThemeColor.white,
                                                 fontWeight: FontWeight.w500,
@@ -253,38 +246,6 @@ class LoginView extends GetView<LoginController> {
                                 ),
                               );
                             },
-                          ),
-                          // Don't have an account
-                          Align(
-                            alignment: Alignment.center,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.fromLTRB(
-                                      0.0, 0.0, 10.0, 0.0),
-                                  child: Text(Utils.dontHaveAnAccountText),
-                                ),
-                                GestureDetector(
-                                  onTap: () => {
-                                    Get.offNamed(AppPages.SIGNUP),
-                                  },
-                                  child: Container(
-                                    margin: const EdgeInsets.fromLTRB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      Utils.signUpText,
-                                      style: mandisaRegular(
-                                        color: ThemeColor.mainColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16.0,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
                           ),
                         ],
                       ),

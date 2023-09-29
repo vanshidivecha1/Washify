@@ -4,34 +4,33 @@ import 'package:vehicle_washing_flutter/app/routes/app_pages.dart';
 
 import '../../../utils/utils.dart';
 
-class ForgetPasswordController extends GetxController {
+class SideNavigatorController extends GetxController {
   //var email = ''.obs;
   //var password = ''.obs;
 
   var isLoading = false.obs;
   final _isPasswordVisible = false.obs;
+  final _isConfirmPasswordVisible = false.obs;
 
   bool get isPasswordVisible => _isPasswordVisible.value;
 
-  final GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
-  late TextEditingController emailController, passwordController;
+  bool get isConfirmPasswordVisible => _isConfirmPasswordVisible.value;
 
-  var email = '';
+  final GlobalKey<FormState> newPasswordFormKey = GlobalKey<FormState>();
+  late TextEditingController passwordController, confirmPasswordController;
+
   var password = '';
+  var confirmPassword = '';
 
   void setLoading(bool value) {
     isLoading.value = value;
   }
 
-  void togglePasswordVisibility() {
-    _isPasswordVisible.value = !_isPasswordVisible.value;
-  }
-
   @override
   void onInit() {
     super.onInit();
-    emailController = TextEditingController();
     passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
   }
 
   @override
@@ -47,24 +46,28 @@ class ForgetPasswordController extends GetxController {
     // passwordController.dispose();
   }
 
-  String? validateEmail(String value) {
-    if (!GetUtils.isEmail(value)) {
-      return Utils.enterValidEmail;
+  String? validatePassword(String value) {
+    if (value.isEmpty) {
+      return Utils.enterPassword;
+    } else if (value.length < 8) {
+      return Utils.passwordLength;
     }
     return null;
   }
 
-  String? validatePassword(String value) {
-    if (value.length < 8) {
-      return Utils.passwordLength;
+  String? validateConfirmPassword(String value) {
+    if (value.isEmpty) {
+      return Utils.enterCurrentPassword;
+    } else if (value != passwordController.text.toString()) {
+      return Utils.confirmPasswordIsNotSameText;
     }
     return null;
   }
 
   void checkLogin() {
     setLoading(false);
-    final isValid = forgetPasswordFormKey.currentState!.validate();
-    Get.toNamed(AppPages.VERIFICATION);
+    final isValid = newPasswordFormKey.currentState!.validate();
+    Get.until((route) => Get.currentRoute == AppPages.LOGIN);
     /*checkUser(emailController.text, passwordController.text).then((auth) {
       if (auth) {
         Get.snackbar('Login', 'Login successfully',
@@ -81,11 +84,7 @@ class ForgetPasswordController extends GetxController {
     if (!isValid) {
       return;
     }
-    forgetPasswordFormKey.currentState!.save();
-  }
-
-  void goBackToLoginScreen() {
-    Get.back();
+    newPasswordFormKey.currentState!.save();
   }
 
   Future<bool> checkUser(String user, String password) {

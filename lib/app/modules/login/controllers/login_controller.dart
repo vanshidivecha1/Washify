@@ -89,4 +89,8 @@ class LoginController extends GetxController {
     }
     return Future.value(false);
   }
+
+  void goToForgetPassword() {
+    Get.toNamed(AppPages.FORGET_PASSWORD);
+  }
 }
