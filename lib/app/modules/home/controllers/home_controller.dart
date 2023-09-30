@@ -18,10 +18,7 @@ class HomeController extends GetxController {
   }
 
   void openSideNavigator() {
-    Get.to(
-      AppPages.SIDE_NAVIGATOR,
-      transition: Transition.rightToLeft,
-    );
+    Get.toNamed(AppPages.SIDE_NAVIGATOR);
   }
 
   @override

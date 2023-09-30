@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vehicle_washing_flutter/app/modules/forgetpassword/views/forget_password_view.dart';
 
 import '../../../utils/color_themes.dart';
 import '../../../utils/text_themes.dart';
 import '../../../utils/utils.dart';
 import '../controllers/home_controller.dart';
+
+final HomeController controller = Get.put(HomeController());
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -13,7 +16,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
-    final HomeController itemController = Get.find();
+    //final HomeController itemController = Get.find();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -34,19 +37,17 @@ class HomeView extends GetView<HomeController> {
                     ],
                   ),
                   child: Image.asset(
-                    Utils.backgroundImage,
+                    Utils.homeBGImage,
                     fit: BoxFit.cover,
                     width: width,
                     height: 280.0,
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    controller.openSideNavigator();
-                  },
-                  child: Positioned(
-                    top: 60,
-                    right: 20,
+                Positioned(
+                  top: 60,
+                  right: 20,
+                  child: GestureDetector(
+                    onTap: () => controller.openSideNavigator(),
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -375,7 +376,7 @@ class HomeView extends GetView<HomeController> {
               physics: const BouncingScrollPhysics(),
               child: Row(
                 children: <Widget>[
-                  for (var item in itemController.items)
+                  for (var item in controller.items)
                     OurServicesModelItem(
                       imagePath: item.imagePath,
                       text: item.text,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ThemeColor {
   static const Color mainColor = Color(0xff2A7FF6);
+  static const Color mainColorLight = Color(0xff83afe7);
   static const Color white = Color(0xffffffff);
   static const Color bg = Color(0x9ef1f1f1);
   static const Color secondaryGrey = Color(0xffF1F3F4);

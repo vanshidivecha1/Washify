@@ -8,6 +8,11 @@ class Utils {
   static String backgroundImage = "assets/images/ic_background.png";
   static String emailImage = "assets/images/ic_email.png";
   static String passwordImage = "assets/images/ic_password.png";
+  static String backImage = "assets/images/ic_arrow_left.png";
+  static String forwardImage = "assets/images/ic_frwd.png";
+  static String homeBGImage = "assets/images/ic_home_background.png";
+  static String logoutBGImage = "assets/images/ic_logout_background.png";
+  static String plusImage = "assets/images/ic_plus.png";
 
   // Icons
   static const IconData personImage = Icons.person_outlined;
@@ -16,6 +21,7 @@ class Utils {
   static const IconData groceryDeliveryImage =
       Icons.local_grocery_store_outlined;
   static const IconData houseKeepingImage = Icons.home_outlined;
+  static const IconData bulletImage = Icons.circle;
 
   // Texts
   static String loadingText = "Loading...";
@@ -66,7 +72,8 @@ class Utils {
   static String verificationDesc =
       "We will send OTP on your registered email address";
   static String enterVerificationCodeText = "Enter Verification Code";
-  static String enterValidVerificationCodeText = "Enter Valid Verification Code";
+  static String enterValidVerificationCodeText =
+      "Enter Valid Verification Code";
   static String didNotReceivedCodeText = "If You Didn't Receive Code!";
   static String resendText = "Resend";
   static String verifyText = "Verify";
@@ -74,8 +81,33 @@ class Utils {
   // New Password Text
   static String newPasswordText = "New Password";
   static String saveText = "Save";
+  static String enterConfirmPassword = "Enter Confirm Password";
   static String confirmPasswordIsNotSameText =
       "Confirm Password Is Same As Password";
+
+  // Side Navigator
+  static String editProfileText = "Edit Profile";
+  static String myServicesText = "My Services";
+  static String pastServicesText = "Past Services";
+  static String addressText = "Address";
+  static String vehiclesText = "Vehicles";
+  static String slotAndTimeText = "Slot And Time";
+  static String changePasswordText = "Change Password";
+  static String termsConditionsText = "Terms & Conditions";
+  static String logoutText = "Logout";
+
+  // Change Password Text
+  static String currentPasswordLabel = "Current Password";
+  static String newPasswordLabel = "New Password";
+  static String confirmPasswordLabel = "Confirm Password";
+
+  // Logout Text
+  static String logOutDescText = "Are you sure want to logout ?";
+  static String logOutBtnText = "Log Out";
+  static String backText = "Back";
+
+  // Address
+  static String addAddressText = "Add Address";
 
   static final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
     onPrimary: Colors.black87,

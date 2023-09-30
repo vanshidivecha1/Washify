@@ -108,7 +108,8 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
                                       fontWeight: FontWeight.normal,
                                       fontSize: 14.0),
                                   border: const OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.red),
+                                      borderSide: BorderSide(
+                                          color: ThemeColor.secondaryRed),
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(9.0)))),
                             ),

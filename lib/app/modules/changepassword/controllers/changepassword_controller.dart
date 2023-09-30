@@ -4,30 +4,37 @@ import 'package:vehicle_washing_flutter/app/routes/app_pages.dart';
 
 import '../../../utils/utils.dart';
 
-class NewPasswordController extends GetxController {
-  //var email = ''.obs;
-  //var password = ''.obs;
-
+class ChangePasswordController extends GetxController {
   var isLoading = false.obs;
-  final _isPasswordVisible = false.obs;
+  final _isCurrentPasswordVisible = false.obs;
+  final _isNewPasswordVisible = false.obs;
   final _isConfirmPasswordVisible = false.obs;
 
-  bool get isPasswordVisible => _isPasswordVisible.value;
+  bool get isCurrentPasswordVisible => _isCurrentPasswordVisible.value;
+
+  bool get isNewPasswordVisible => _isNewPasswordVisible.value;
 
   bool get isConfirmPasswordVisible => _isConfirmPasswordVisible.value;
 
-  final GlobalKey<FormState> newPasswordFormKey = GlobalKey<FormState>();
-  late TextEditingController passwordController, confirmPasswordController;
+  final GlobalKey<FormState> changePasswordFormKey = GlobalKey<FormState>();
+  late TextEditingController currentPasswordController,
+      newPasswordController,
+      confirmPasswordController;
 
-  var password = '';
+  var currentPassword = '';
+  var newPassword = '';
   var confirmPassword = '';
 
   void setLoading(bool value) {
     isLoading.value = value;
   }
 
-  void togglePasswordVisibility() {
-    _isPasswordVisible.value = !_isPasswordVisible.value;
+  void toggleCurrentPasswordVisibility() {
+    _isCurrentPasswordVisible.value = !_isCurrentPasswordVisible.value;
+  }
+
+  void toggleNewPasswordVisibility() {
+    _isNewPasswordVisible.value = !_isNewPasswordVisible.value;
   }
 
   void toggleConfirmPasswordVisibility() {
@@ -37,7 +44,8 @@ class NewPasswordController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    passwordController = TextEditingController();
+    newPasswordController = TextEditingController();
+    currentPasswordController = TextEditingController();
     confirmPasswordController = TextEditingController();
   }
 
@@ -54,7 +62,16 @@ class NewPasswordController extends GetxController {
     // passwordController.dispose();
   }
 
-  String? validatePassword(String value) {
+  String? validateCurrentPassword(String value) {
+    if (value.isEmpty) {
+      return Utils.enterCurrentPassword;
+    } else if (value.length < 8) {
+      return Utils.passwordLength;
+    }
+    return null;
+  }
+
+  String? validateNewPassword(String value) {
     if (value.isEmpty) {
       return Utils.enterPassword;
     } else if (value.length < 8) {
@@ -66,7 +83,7 @@ class NewPasswordController extends GetxController {
   String? validateConfirmPassword(String value) {
     if (value.isEmpty) {
       return Utils.enterConfirmPassword;
-    } else if (value != passwordController.text.toString()) {
+    } else if (value != newPasswordController.text.toString()) {
       return Utils.confirmPasswordIsNotSameText;
     }
     return null;
@@ -74,8 +91,9 @@ class NewPasswordController extends GetxController {
 
   void checkLogin() {
     setLoading(false);
-    final isValid = newPasswordFormKey.currentState!.validate();
-    Get.until((route) => Get.currentRoute == AppPages.LOGIN);
+    final isValid = changePasswordFormKey.currentState!.validate();
+    Get.back();
+    //Get.until((route) => Get.currentRoute == AppPages.LOGIN);
     /*checkUser(emailController.text, passwordController.text).then((auth) {
       if (auth) {
         Get.snackbar('Login', 'Login successfully',
@@ -92,7 +110,7 @@ class NewPasswordController extends GetxController {
     if (!isValid) {
       return;
     }
-    newPasswordFormKey.currentState!.save();
+    changePasswordFormKey.currentState!.save();
   }
 
   Future<bool> checkUser(String user, String password) {

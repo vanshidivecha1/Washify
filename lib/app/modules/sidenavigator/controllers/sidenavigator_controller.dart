@@ -3,34 +3,59 @@ import 'package:get/get.dart';
 import 'package:vehicle_washing_flutter/app/routes/app_pages.dart';
 
 import '../../../utils/utils.dart';
+import '../model/sidenavigator_model.dart';
 
 class SideNavigatorController extends GetxController {
-  //var email = ''.obs;
-  //var password = ''.obs;
-
   var isLoading = false.obs;
-  final _isPasswordVisible = false.obs;
-  final _isConfirmPasswordVisible = false.obs;
-
-  bool get isPasswordVisible => _isPasswordVisible.value;
-
-  bool get isConfirmPasswordVisible => _isConfirmPasswordVisible.value;
+  var selectedIndex = RxInt(-1);
 
   final GlobalKey<FormState> newPasswordFormKey = GlobalKey<FormState>();
-  late TextEditingController passwordController, confirmPasswordController;
-
-  var password = '';
-  var confirmPassword = '';
 
   void setLoading(bool value) {
     isLoading.value = value;
   }
 
+  final items = <SideNavigatorModel>[
+    SideNavigatorModel(
+      bullet: Utils.bulletImage,
+      text: Utils.myServicesText,
+      imagePath: Utils.forwardImage,
+    ),
+    SideNavigatorModel(
+      bullet: Utils.bulletImage,
+      text: Utils.pastServicesText,
+      imagePath: Utils.forwardImage,
+    ),
+    SideNavigatorModel(
+      bullet: Utils.bulletImage,
+      text: Utils.addressText,
+      imagePath: Utils.forwardImage,
+    ),
+    SideNavigatorModel(
+      bullet: Utils.bulletImage,
+      text: Utils.vehiclesText,
+      imagePath: Utils.forwardImage,
+    ),
+    SideNavigatorModel(
+      bullet: Utils.bulletImage,
+      text: Utils.slotAndTimeText,
+      imagePath: Utils.forwardImage,
+    ),
+    SideNavigatorModel(
+      bullet: Utils.bulletImage,
+      text: Utils.changePasswordText,
+      imagePath: Utils.forwardImage,
+    ),
+    SideNavigatorModel(
+      bullet: Utils.bulletImage,
+      text: Utils.termsConditionsText,
+      imagePath: Utils.forwardImage,
+    ),
+  ].obs;
+
   @override
   void onInit() {
     super.onInit();
-    passwordController = TextEditingController();
-    confirmPasswordController = TextEditingController();
   }
 
   @override
@@ -46,28 +71,42 @@ class SideNavigatorController extends GetxController {
     // passwordController.dispose();
   }
 
-  String? validatePassword(String value) {
-    if (value.isEmpty) {
-      return Utils.enterPassword;
-    } else if (value.length < 8) {
-      return Utils.passwordLength;
-    }
-    return null;
+  void goToMyServices() {
+    Get.toNamed(AppPages.MY_SERVICES);
   }
 
-  String? validateConfirmPassword(String value) {
-    if (value.isEmpty) {
-      return Utils.enterCurrentPassword;
-    } else if (value != passwordController.text.toString()) {
-      return Utils.confirmPasswordIsNotSameText;
-    }
-    return null;
+  void goToPastServices() {
+    Get.toNamed(AppPages.PAST_SERVICES);
+  }
+
+  void goToAddressPage() {
+    Get.toNamed(AppPages.ADDRESS);
+  }
+
+  void goToVehiclesPage() {
+    Get.toNamed(AppPages.VEHICLES);
+  }
+
+  void goToSlotAndTimePage() {
+    Get.toNamed(AppPages.SLOT_AND_TIME);
+  }
+
+  void goToTermsAndConditionPage() {
+    Get.toNamed(AppPages.TERMS_AND_CONDITION);
+  }
+
+  void goToChangePasswordPage() {
+    Get.toNamed(AppPages.CHANGE_PASSWORD);
+  }
+
+  void goToLogoutPage() {
+    Get.toNamed(AppPages.LOGOUT);
   }
 
   void checkLogin() {
     setLoading(false);
     final isValid = newPasswordFormKey.currentState!.validate();
-    Get.until((route) => Get.currentRoute == AppPages.LOGIN);
+    //Get.until((route) => Get.currentRoute == AppPages.LOGIN);
     /*checkUser(emailController.text, passwordController.text).then((auth) {
       if (auth) {
         Get.snackbar('Login', 'Login successfully',

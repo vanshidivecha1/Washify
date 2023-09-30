@@ -12,6 +12,14 @@ abstract class Routes {
   static const VERIFICATION = _Paths.VERIFICATION;
   static const NEW_PASSWORD = _Paths.NEW_PASSWORD;
   static const SIDE_NAVIGATOR = _Paths.SIDE_NAVIGATOR;
+  static const CHANGE_PASSWORD = _Paths.CHANGE_PASSWORD;
+  static const LOGOUT = _Paths.LOGOUT;
+  static const ADDRESS = _Paths.ADDRESS;
+  static const MY_SERVICES = _Paths.MY_SERVICES;
+  static const PAST_SERVICES = _Paths.PAST_SERVICES;
+  static const VEHICLES = _Paths.VEHICLES;
+  static const SLOT_AND_TIME = _Paths.SLOT_AND_TIME;
+  static const TERMS_AND_CONDITION = _Paths.TERMS_AND_CONDITION;
 }
 
 abstract class _Paths {
@@ -25,4 +33,12 @@ abstract class _Paths {
   static const VERIFICATION = '/verification';
   static const NEW_PASSWORD = '/newPassword';
   static const SIDE_NAVIGATOR = '/sideNavigator';
+  static const CHANGE_PASSWORD = '/changePassword';
+  static const LOGOUT = '/logout';
+  static const ADDRESS = '/address';
+  static const MY_SERVICES = '/myServices';
+  static const PAST_SERVICES = '/pastServices';
+  static const VEHICLES = '/vehicles';
+  static const SLOT_AND_TIME = '/slotAndTime';
+  static const TERMS_AND_CONDITION = '/termsAndCondition';
 }
