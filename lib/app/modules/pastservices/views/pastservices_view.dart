@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vehicle_washing_flutter/app/modules/logout/controllers/logout_controller.dart';
 
 import '../../../utils/color_themes.dart';
 import '../../../utils/text_themes.dart';
@@ -27,7 +26,36 @@ class PastServicesView extends GetView<PastServicesController> {
         child: Scaffold(
           body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-            child: Column(),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(15.0, 20.0, 20.0, 5.0),
+                        child: Image.asset(Utils.backImage),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(10.0, 20.0, 20.0, 5.0),
+                      child: Text(
+                        Utils.pastServicesText,
+                        textAlign: TextAlign.start,
+                        style: mandisaRegular(
+                            color: ThemeColor.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

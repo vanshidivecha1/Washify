@@ -5,6 +5,8 @@ import 'package:vehicle_washing_flutter/app/modules/myservices/views/myservices_
 import 'package:vehicle_washing_flutter/app/modules/newpassword/bindings/newpassword_binding.dart';
 import 'package:vehicle_washing_flutter/app/modules/newpassword/views/newpassword_view.dart';
 import 'package:vehicle_washing_flutter/app/modules/signup/bindings/signup_binding.dart';
+import 'package:vehicle_washing_flutter/app/modules/slotandtime/bindings/slotandtime_binding.dart';
+import 'package:vehicle_washing_flutter/app/modules/slotandtime/views/slotandtime_view.dart';
 import 'package:vehicle_washing_flutter/app/modules/termsandconditions/bindings/termsandcondition_binding.dart';
 import 'package:vehicle_washing_flutter/app/modules/termsandconditions/views/termsandcondition_view.dart';
 import 'package:vehicle_washing_flutter/app/modules/verification/bindings/verification_binding.dart';
@@ -121,8 +123,8 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SLOT_AND_TIME,
-      page: () => const PastServicesView(),
-      binding: PastServicesBinding(),
+      page: () => const SlotAndTimeView(),
+      binding: SlotAndTimeBinding(),
       transition: Transition.rightToLeft,
     ),
     GetPage(

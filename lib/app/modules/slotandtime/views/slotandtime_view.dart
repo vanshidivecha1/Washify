@@ -27,7 +27,36 @@ class SlotAndTimeView extends GetView<SlotAndTimeController> {
         child: Scaffold(
           body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-            child: Column(),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(15.0, 20.0, 20.0, 5.0),
+                        child: Image.asset(Utils.backImage),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(10.0, 20.0, 20.0, 5.0),
+                      child: Text(
+                        Utils.selectSlotText,
+                        textAlign: TextAlign.start,
+                        style: mandisaRegular(
+                            color: ThemeColor.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

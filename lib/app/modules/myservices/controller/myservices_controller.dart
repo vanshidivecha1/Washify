@@ -1,11 +1,31 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:vehicle_washing_flutter/app/routes/app_pages.dart';
+import 'package:vehicle_washing_flutter/app/modules/myservices/model/services_items_model.dart';
 
 import '../../../utils/utils.dart';
+import '../model/services_model.dart';
 
 class MyServicesController extends GetxController {
   var isLoading = false.obs;
+
+  final items = <ServicesModel>[
+    ServicesModel(imagePath: Utils.bikeWashImage, text: 'Bike Wash'),
+    ServicesModel(imagePath: Utils.carWashImage, text: 'Car Wash'),
+  ].obs;
+
+  final servicesItems = <ServicesItemModel>[
+    ServicesItemModel(
+        title: "Today",
+        companyName: "Toyota Innova Crysta",
+        servicedByPersonName: "Bhavik Miyani",
+        imagePath: Utils.backgroundImage,
+        dateTime: "Aug 01, 2023 07:00 AM"),
+    ServicesItemModel(
+        title: "Tomorrow",
+        companyName: "Toyota Innova Crysta",
+        servicedByPersonName: "Bhavik Miyani",
+        imagePath: Utils.backgroundImage,
+        dateTime: "Aug 01, 2023 07:00 AM")
+  ].obs;
 
   void setLoading(bool value) {
     isLoading.value = value;

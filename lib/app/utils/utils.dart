@@ -13,6 +13,7 @@ class Utils {
   static String homeBGImage = "assets/images/ic_home_background.png";
   static String logoutBGImage = "assets/images/ic_logout_background.png";
   static String plusImage = "assets/images/ic_plus.png";
+  static String addMoreServicesImage = "assets/images/ic_add_more_services.png";
 
   // Icons
   static const IconData personImage = Icons.person_outlined;
@@ -106,8 +107,20 @@ class Utils {
   static String logOutBtnText = "Log Out";
   static String backText = "Back";
 
+  // My Services Text
+  static String addMoreText = "Add More";
+
+  // Vehicles Text
+  static String addVehiclesText = "Add Vehicles";
+
+  // Slot And Time Text
+  static String selectSlotText = "Select Slot";
+
   // Address
   static String addAddressText = "Add Address";
+
+  // Term & Condition Text
+  static String termConditionText = "Term & Condition";
 
   static final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
     onPrimary: Colors.black87,
