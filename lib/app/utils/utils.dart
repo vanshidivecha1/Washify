@@ -14,6 +14,8 @@ class Utils {
   static String logoutBGImage = "assets/images/ic_logout_background.png";
   static String plusImage = "assets/images/ic_plus.png";
   static String addMoreServicesImage = "assets/images/ic_add_more_services.png";
+  static String bikeImage = "assets/images/ic_bike.png";
+  static String carImage = "assets/images/ic_car.png";
 
   // Icons
   static const IconData personImage = Icons.person_outlined;
@@ -109,9 +111,20 @@ class Utils {
 
   // My Services Text
   static String addMoreText = "Add More";
+  static String servicedByText = "Serviced By : ";
+  static String viewPastServicesText = "View Past Services?";
+  static String clickHereText = "Click Here!";
 
   // Vehicles Text
   static String addVehiclesText = "Add Vehicles";
+  static String classText = "Class";
+  static String twoWheelerText = "2 Wheeler";
+  static String fourWheelerText = "4 Wheeler";
+  static String companyText = "Company";
+  static String modelText = "Model";
+  static String typeText = "Type";
+  static String registrationNumberText = "Registration Number";
+  static String saveAndNextText = "Save And Next";
 
   // Slot And Time Text
   static String selectSlotText = "Select Slot";

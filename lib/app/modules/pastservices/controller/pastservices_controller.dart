@@ -1,11 +1,51 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:vehicle_washing_flutter/app/modules/pastservices/model/past_services_model.dart';
 import 'package:vehicle_washing_flutter/app/routes/app_pages.dart';
 
 import '../../../utils/utils.dart';
 
 class PastServicesController extends GetxController {
   var isLoading = false.obs;
+  var selectedIndex = RxInt(-1);
+
+  final items = <PastServicesModel>[
+    PastServicesModel(
+      companyName: "Toyota Innova Crysta",
+      servicedByPersonName: "Bhavik Miyani",
+      dateTime: "Aug 01, 2023 07:00 AM",
+    ),
+    PastServicesModel(
+      companyName: "Toyota Innova Crysta",
+      servicedByPersonName: "Bhavik Miyani",
+      dateTime: "Aug 01, 2023 07:00 AM",
+    ),
+    PastServicesModel(
+      companyName: "Toyota Innova Crysta",
+      servicedByPersonName: "Bhavik Miyani",
+      dateTime: "Aug 01, 2023 07:00 AM",
+    ),
+    PastServicesModel(
+      companyName: "Toyota Innova Crysta",
+      servicedByPersonName: "Bhavik Miyani",
+      dateTime: "Aug 01, 2023 07:00 AM",
+    ),
+    PastServicesModel(
+      companyName: "Toyota Innova Crysta",
+      servicedByPersonName: "Bhavik Miyani",
+      dateTime: "Aug 01, 2023 07:00 AM",
+    ),
+    PastServicesModel(
+      companyName: "Toyota Innova Crysta",
+      servicedByPersonName: "Bhavik Miyani",
+      dateTime: "Aug 01, 2023 07:00 AM",
+    ),
+    PastServicesModel(
+      companyName: "Toyota Innova Crysta",
+      servicedByPersonName: "Bhavik Miyani",
+      dateTime: "Aug 01, 2023 07:00 AM",
+    ),
+  ].obs;
 
   void setLoading(bool value) {
     isLoading.value = value;

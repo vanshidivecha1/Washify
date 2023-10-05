@@ -21,7 +21,9 @@ class ThemeColor {
   static const Color primaryYellow = Color(0xffE2B317);
   static const Color gradient1 = Color(0xFF2E2739);
   static const Color gradient2 = Color(0xFF49BEE8);
-  static Color tabsBackground = Color(0xff239DD1);
+  static const Color tabsBackground = Color(0xFF239DD1);
+  static const Color servicesBackground = Color(0xFFf6f7fc);
+  static const Color servicesBorderColor = Color(0xFFecf5ff);
 
   ThemeData get themeData {
     ColorScheme colorSchemeMovieApp = const ColorScheme(

@@ -1,11 +1,33 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:vehicle_washing_flutter/app/routes/app_pages.dart';
-
-import '../../../utils/utils.dart';
+import 'package:vehicle_washing_flutter/app/modules/vehicles/model/company_item_model.dart';
+import 'package:vehicle_washing_flutter/app/modules/vehicles/model/company_item_model.dart';
+import 'package:vehicle_washing_flutter/app/modules/vehicles/model/company_item_model.dart';
+import 'package:vehicle_washing_flutter/app/modules/vehicles/model/company_item_model.dart';
 
 class VehicleController extends GetxController {
   var isLoading = false.obs;
+  var isTwoWheelerSelected = false.obs;
+  var isFourWheelerSelected = false.obs;
+
+  List<String> dropdownValues = ['Option 1', 'Option 2', 'Option 3'];
+  Rx<List<String>> selectedOptionList = Rx<List<String>>([]);
+  var selectedValue = ''.obs;
+
+  List<CompanyItemModel> companyDataList = [
+    CompanyItemModel("Option 1"),
+    CompanyItemModel("Option 2"),
+    CompanyItemModel("Option 3"),
+  ];
+
+  void toggleTwoWheeler() {
+    isTwoWheelerSelected.toggle();
+    isFourWheelerSelected.value = false;
+  }
+
+  void toggleFourWheeler() {
+    isFourWheelerSelected.toggle();
+    isTwoWheelerSelected.value = false;
+  }
 
   void setLoading(bool value) {
     isLoading.value = value;

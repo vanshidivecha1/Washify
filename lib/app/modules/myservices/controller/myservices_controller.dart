@@ -6,6 +6,10 @@ import '../model/services_model.dart';
 
 class MyServicesController extends GetxController {
   var isLoading = false.obs;
+  RxInt selectedIndex = 0.obs;
+  //var servicesList = <ServiceItemImageModel>[].obs;
+
+  late List<String> imageModels;
 
   final items = <ServicesModel>[
     ServicesModel(imagePath: Utils.bikeWashImage, text: 'Bike Wash'),
@@ -14,18 +18,45 @@ class MyServicesController extends GetxController {
 
   final servicesItems = <ServicesItemModel>[
     ServicesItemModel(
-        title: "Today",
-        companyName: "Toyota Innova Crysta",
-        servicedByPersonName: "Bhavik Miyani",
-        imagePath: Utils.backgroundImage,
-        dateTime: "Aug 01, 2023 07:00 AM"),
+      title: "Today",
+      companyName: "Toyota Innova Crysta",
+      servicedByPersonName: "Bhavik Miyani",
+      dateTime: "Aug 01, 2023 07:00 AM",
+      //imageModels: images,
+    ),
     ServicesItemModel(
-        title: "Tomorrow",
-        companyName: "Toyota Innova Crysta",
-        servicedByPersonName: "Bhavik Miyani",
-        imagePath: Utils.backgroundImage,
-        dateTime: "Aug 01, 2023 07:00 AM")
+      title: "Tomorrow",
+      companyName: "Toyota Innova Crysta",
+      servicedByPersonName: "Bhavik Miyani",
+      dateTime: "Aug 01, 2023 07:00 AM",
+      //imageModels: images,
+    ),
   ].obs;
+
+  /* addServicesItem({
+    required String title,
+    required String companyName,
+    required String servicedByPersonName,
+    required String dateTime,
+    required List<String> imageUrls,
+  }) {
+    // Convert imageUrls to a list of ServiceItemImageModel
+    var images = imageUrls
+        .map((imageUrl) => ServiceItemImageModel(imagePath: imageUrl))
+        .toList();
+
+    // Create a new ServicesItemModel
+    var newItem = ServicesItemModel(
+      title: title,
+      companyName: companyName,
+      servicedByPersonName: servicedByPersonName,
+      dateTime: dateTime,
+      imageModels: images,
+    );
+
+    // Add the new item to the list
+    servicesList.add(newItem);
+  }*/
 
   void setLoading(bool value) {
     isLoading.value = value;

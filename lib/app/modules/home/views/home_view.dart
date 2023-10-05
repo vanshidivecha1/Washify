@@ -53,11 +53,11 @@ class HomeView extends GetView<HomeController> {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: ThemeColor.black.withOpacity(0.2),
+                            color: ThemeColor.black.withOpacity(0.1),
                             // Shadow color
-                            spreadRadius: 4,
+                            spreadRadius: 2,
                             blurRadius: 2,
-                            offset: const Offset(0, 3),
+                            offset: const Offset(0, 2),
                           ),
                         ],
                       ),
