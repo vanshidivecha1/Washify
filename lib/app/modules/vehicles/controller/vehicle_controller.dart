@@ -1,8 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vehicle_washing_flutter/app/modules/vehicles/model/company_item_model.dart';
-import 'package:vehicle_washing_flutter/app/modules/vehicles/model/company_item_model.dart';
-import 'package:vehicle_washing_flutter/app/modules/vehicles/model/company_item_model.dart';
-import 'package:vehicle_washing_flutter/app/modules/vehicles/model/company_item_model.dart';
+
+import '../../../utils/utils.dart';
 
 class VehicleController extends GetxController {
   var isLoading = false.obs;
@@ -13,11 +12,26 @@ class VehicleController extends GetxController {
   Rx<List<String>> selectedOptionList = Rx<List<String>>([]);
   var selectedValue = ''.obs;
 
-  List<CompanyItemModel> companyDataList = [
-    CompanyItemModel("Option 1"),
-    CompanyItemModel("Option 2"),
-    CompanyItemModel("Option 3"),
-  ];
+  var selectedCompany = "".obs;
+  List companyList = ['abc', 'def', 'ghi'];
+
+  var selectedModel = "".obs;
+  List modelList = ['abc', 'def', 'ghi'];
+
+  var selectedType = "".obs;
+  List typeList = ['abc', 'def', 'ghi'];
+
+  late TextEditingController registrationNumberController;
+  var registrationNumber = '';
+
+  final GlobalKey<FormState> registerNumberKey = GlobalKey<FormState>();
+
+  String? validateRegistrationNumber(String value) {
+    if (value.isEmpty) {
+      return Utils.enterRegistrationNumber;
+    }
+    return null;
+  }
 
   void toggleTwoWheeler() {
     isTwoWheelerSelected.toggle();
@@ -36,6 +50,7 @@ class VehicleController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    registrationNumberController = TextEditingController();
   }
 
   @override
@@ -51,9 +66,11 @@ class VehicleController extends GetxController {
     // passwordController.dispose();
   }
 
-  void checkLogOut() {
+  void checkSave() {
     setLoading(false);
     Get.back();
+
+    final isValid = registerNumberKey.currentState!.validate();
     //Get.until((route) => Get.currentRoute == AppPages.LOGIN);
     /*checkUser(emailController.text, passwordController.text).then((auth) {
       if (auth) {

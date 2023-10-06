@@ -125,6 +125,7 @@ class Utils {
   static String typeText = "Type";
   static String registrationNumberText = "Registration Number";
   static String saveAndNextText = "Save And Next";
+  static String enterRegistrationNumber = "Please enter registration number";
 
   // Slot And Time Text
   static String selectSlotText = "Select Slot";
