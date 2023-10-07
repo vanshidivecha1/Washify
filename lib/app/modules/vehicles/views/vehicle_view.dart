@@ -60,7 +60,7 @@ class VehicleView extends GetView<VehicleController> {
                     ],
                   ),
                   Container(
-                    padding: const EdgeInsets.fromLTRB(10.0, 20.0, 20.0, 5.0),
+                    padding: const EdgeInsets.fromLTRB(10.0, 20.0, 20.0, 0.0),
                     child: Text(
                       Utils.classText,
                       textAlign: TextAlign.start,
@@ -71,7 +71,7 @@ class VehicleView extends GetView<VehicleController> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 10.0, 5.0, 5.0),
+                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 5.0, 5.0),
                     child: Row(
                       children: [
                         Obx(
@@ -194,11 +194,12 @@ class VehicleView extends GetView<VehicleController> {
                           fontSize: 12.0),
                     ),
                   ),
+                  // Company List
                   Obx(
                     () => Container(
                       width: width,
                       padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                      margin: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                       decoration: BoxDecoration(
                         color: ThemeColor.servicesBackground,
                         boxShadow: [
@@ -217,7 +218,8 @@ class VehicleView extends GetView<VehicleController> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: DropdownButton(
-                        items: controller.companyList.map((selectedType) {
+                        items: controller.twoWheelerCompanyList
+                            .map((selectedType) {
                           return DropdownMenuItem(
                             value: selectedType,
                             child: Text(
@@ -229,9 +231,13 @@ class VehicleView extends GetView<VehicleController> {
                             ),
                           );
                         }).toList(),
-                        /*hint: const Text(
-                          'book type',
-                        ),*/
+                        hint: Text(
+                          Utils.selectVehicleCompanyText,
+                          style: mandisaRegular(
+                              color: ThemeColor.black,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 10.0),
+                        ),
                         value: controller.selectedCompany.value == ""
                             ? null
                             : controller.selectedCompany.value,
@@ -255,11 +261,12 @@ class VehicleView extends GetView<VehicleController> {
                           fontSize: 12.0),
                     ),
                   ),
+                  // Model List
                   Obx(
                     () => Container(
                       width: width,
                       padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                      margin: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                       decoration: BoxDecoration(
                         color: ThemeColor.servicesBackground,
                         boxShadow: [
@@ -290,13 +297,18 @@ class VehicleView extends GetView<VehicleController> {
                             ),
                           );
                         }).toList(),
-                        /*hint: const Text(
-                          'book type',
-                        ),*/
+                        hint: Text(
+                          Utils.selectVehicleModelText,
+                          style: mandisaRegular(
+                              color: ThemeColor.black,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 10.0),
+                        ),
                         value: controller.selectedModel.value == ""
                             ? null
                             : controller.selectedModel.value,
                         onChanged: (newValue) {
+                          //controller.selectedModel.value = newValue.toString();
                           controller.selectedModel.value = newValue.toString();
                         },
                         underline: const SizedBox(),
@@ -315,11 +327,12 @@ class VehicleView extends GetView<VehicleController> {
                           fontSize: 12.0),
                     ),
                   ),
+                  // Type List
                   Obx(
                     () => Container(
                       width: width,
                       padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                      margin: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                       decoration: BoxDecoration(
                         color: ThemeColor.servicesBackground,
                         boxShadow: [
@@ -350,9 +363,13 @@ class VehicleView extends GetView<VehicleController> {
                             ),
                           );
                         }).toList(),
-                        /*hint: const Text(
-                          'book type',
-                        ),*/
+                        hint: Text(
+                          Utils.selectVehicleTypeText,
+                          style: mandisaRegular(
+                              color: ThemeColor.black,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 10.0),
+                        ),
                         value: controller.selectedType.value == ""
                             ? null
                             : controller.selectedType.value,
@@ -377,27 +394,44 @@ class VehicleView extends GetView<VehicleController> {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-                    child: TextFormField(
-                      textInputAction: TextInputAction.next,
-                      controller: controller.registrationNumberController,
-                      onSaved: (value) {
-                        controller.registrationNumber = value!;
-                      },
-                      validator: (value) =>
-                          controller.validateRegistrationNumber(value!),
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Utils.personImage),
-                        hintText: Utils.enterNameHint,
-                        labelText: Utils.enterNameLabel,
-                        errorStyle: mandisaRegular(
-                            color: ThemeColor.secondaryRed,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 14.0),
-                        border: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(9.0),
+                    child: Container(
+                      padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
+                      decoration: BoxDecoration(
+                        color: ThemeColor.servicesBackground,
+                        boxShadow: [
+                          BoxShadow(
+                            color: ThemeColor.servicesBackground
+                                .withOpacity(0.2), // Shadow color
+                            spreadRadius: 1,
+                            blurRadius: 0.2,
+                            offset: const Offset(0, 2),
                           ),
+                        ],
+                        border: Border.all(
+                          color: ThemeColor.servicesBorderColor,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: TextFormField(
+                        textInputAction: TextInputAction.next,
+                        controller: controller.registrationNumberController,
+                        onSaved: (value) {
+                          controller.registrationNumber = value!;
+                        },
+                        validator: (value) =>
+                            controller.validateRegistrationNumber(value!),
+                        decoration: InputDecoration(
+                          hintText: Utils.enterRegistrationNumber,
+                          hintStyle: mandisaRegular(
+                              color: ThemeColor.black,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 10.0),
+                          errorStyle: mandisaRegular(
+                              color: ThemeColor.secondaryRed,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 14.0),
+                          border: InputBorder.none,
                         ),
                       ),
                     ),

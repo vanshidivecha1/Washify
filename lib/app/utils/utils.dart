@@ -16,6 +16,7 @@ class Utils {
   static String addMoreServicesImage = "assets/images/ic_add_more_services.png";
   static String bikeImage = "assets/images/ic_bike.png";
   static String carImage = "assets/images/ic_car.png";
+  static String slotBGImage = "assets/images/ic_slot_background.png";
 
   // Icons
   static const IconData personImage = Icons.person_outlined;
@@ -125,10 +126,24 @@ class Utils {
   static String typeText = "Type";
   static String registrationNumberText = "Registration Number";
   static String saveAndNextText = "Save And Next";
-  static String enterRegistrationNumber = "Please enter registration number";
+  static String enterRegistrationNumber = "GJ 05 BM 7313";
+  static String enterRegistrationLabelText = "GJ 05 BM 7313";
+  static String selectVehicleModelText = "Select Vehicle Model";
+  static String selectVehicleCompanyText = "Select Vehicle Company";
+  static String selectVehicleTypeText = "Select Vehicle Type";
 
   // Slot And Time Text
   static String selectSlotText = "Select Slot";
+  static String slotDescText =
+      "Please select time slot between which you want your service to happen on a daily basis.";
+  static String slotTimeOneText = "04:00 AM - 06:00 AM";
+  static String slotTimeTwoText = "06:00 AM - 08:00 AM";
+  static String slotTimeThreeText = "08:00 AM - 10:00 AM";
+  static String slotTimeFourText = "10:00 AM - 12:00 AM";
+  static String slotTimeFiveText = "12:00 PM - 02:00 PM";
+  static String slotTimeSixText = "02:00 PM - 04:00 PM";
+  static String slotTimeSevenText = "04:00 PM - 06:00 PM";
+  static String slotTimeEightText = "06:00 PM - 08:00 PM";
 
   // Address
   static String addAddressText = "Add Address";
