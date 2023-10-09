@@ -24,6 +24,7 @@ class ThemeColor {
   static const Color tabsBackground = Color(0xFF239DD1);
   static const Color servicesBackground = Color(0xFFf6f7fc);
   static const Color servicesBorderColor = Color(0xFFecf5ff);
+  static const Color termsConditionBorderColor = Color(0xFFf6f7fc);
 
   ThemeData get themeData {
     ColorScheme colorSchemeMovieApp = const ColorScheme(

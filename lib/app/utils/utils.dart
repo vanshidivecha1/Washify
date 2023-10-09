@@ -150,6 +150,7 @@ class Utils {
 
   // Term & Condition Text
   static String termConditionText = "Term & Condition";
+  static String termConditionDesc = "Term & Condition";
 
   static final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
     onPrimary: Colors.black87,
